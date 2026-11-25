@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#173f35">
+<title>La Cafetería | Menú escolar</title>
+<style>
+:root{--green:#173f35;--green2:#245b4b;--cream:#f7f5ef;--paper:#fffefa;--orange:#e8a24a;--ink:#24312c;--muted:#78827c;--line:#e9e7df;--red:#b84e3c;--shadow:0 12px 35px #19372b12}
+*{box-sizing:border-box}body{margin:0;background:var(--cream);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}button,input,select{font:inherit}button{cursor:pointer}
+header{background:var(--green);color:white;padding:22px max(20px,calc((100% - 1180px)/2));display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{display:flex;align-items:center;gap:12px}.logo{width:44px;height:44px;border-radius:14px;background:#ffffff1c;display:grid;place-items:center;font-size:23px}.brand strong{display:block;font-family:Georgia,serif;font-size:21px;letter-spacing:.2px}.brand small{color:#c5d5ce;font-size:11px;letter-spacing:1.5px;text-transform:uppercase}
+.header-note{font-size:12px;color:#d3e0da;text-align:right}
+main{max-width:1180px;margin:auto;padding:28px 20px 70px}
+.hero{display:flex;align-items:end;justify-content:space-between;gap:20px;margin:8px 0 24px}.eyebrow{color:var(--green2);font-size:11px;font-weight:800;letter-spacing:1.8px;text-transform:uppercase}.hero h1{font:500 clamp(30px,5vw,48px)/1.05 Georgia,serif;margin:8px 0}.hero p{margin:8px 0 0;color:var(--muted);max-width:540px;font-size:14px;line-height:1.55}
+.open-pill{white-space:nowrap;background:#e5eee8;color:var(--green);padding:9px 13px;border-radius:30px;font-size:12px;font-weight:700}
+.toolbar{display:flex;gap:12px;align-items:center;justify-content:space-between;margin:24px 0 16px}.search{flex:1;max-width:360px;position:relative}.search input{width:100%;padding:12px 14px 12px 40px;border:1px solid var(--line);border-radius:12px;background:var(--paper);outline:none}.search span{position:absolute;left:14px;top:10px;color:var(--muted)}
+.tabs{display:flex;gap:8px;overflow:auto;padding:3px 0 10px;scrollbar-width:none}.tabs button{border:1px solid var(--line);background:var(--paper);color:#56625c;padding:9px 14px;border-radius:30px;white-space:nowrap;font-size:12px;font-weight:700}.tabs button.active{background:var(--green);border-color:var(--green);color:white}
+.layout{display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:24px;align-items:start}.section-head{display:flex;justify-content:space-between;align-items:center;margin:10px 0 14px}.section-head h2{font:500 25px Georgia,serif;margin:0}.section-head span{font-size:12px;color:var(--muted)}
+.products{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}.product{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:16px;display:flex;gap:13px;min-height:126px;box-shadow:0 3px 12px #1c382b05}.food-icon{width:58px;height:58px;flex:0 0 58px;border-radius:14px;background:#f2eee4;display:grid;place-items:center;font-size:29px}.product-info{min-width:0;flex:1}.product h3{font-size:15px;margin:1px 0 5px}.product p{font-size:11px;color:var(--muted);line-height:1.4;margin:0 0 10px}.product-bottom{display:flex;align-items:center;justify-content:space-between;gap:8px}.price{font-weight:800;color:var(--green);font-size:15px}.add{width:31px;height:31px;border:0;border-radius:10px;background:var(--green);color:white;font-size:20px;line-height:1}.add:hover{background:var(--green2)}
+.cart{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:19px;box-shadow:var(--shadow);position:sticky;top:16px}.cart-title{display:flex;justify-content:space-between;align-items:center}.cart-title h2{font:500 23px Georgia,serif;margin:0}.count{background:#edf2ed;color:var(--green);font-size:11px;font-weight:800;padding:5px 9px;border-radius:20px}.empty{text-align:center;padding:30px 8px;color:var(--muted);font-size:13px}.empty .basket{font-size:35px;margin-bottom:8px}.cart-items{max-height:290px;overflow:auto;margin:14px 0}.cart-item{padding:11px 0;border-bottom:1px solid var(--line)}.item-top{display:flex;justify-content:space-between;gap:8px;font-size:13px;font-weight:700}.item-sub{font-size:11px;color:var(--muted);margin-top:3px}.qty{display:flex;align-items:center;gap:9px;margin-top:8px}.qty button{width:24px;height:24px;border:1px solid var(--line);background:white;border-radius:7px}.qty span{font-size:12px;font-weight:700}
+.total{display:flex;justify-content:space-between;border-top:1px solid var(--line);padding:15px 0;font-weight:800}.total strong{font-size:22px;color:var(--green)}.checkout{width:100%;border:0;background:var(--orange);color:#2c2418;padding:14px;border-radius:12px;font-weight:800}.checkout:disabled{opacity:.45;cursor:not-allowed}.cart-hint{font-size:10px;line-height:1.5;color:var(--muted);text-align:center;margin:10px 0 0}
+.modal-backdrop{position:fixed;inset:0;background:#12231dcc;display:none;align-items:center;justify-content:center;padding:18px;z-index:10}.modal-backdrop.show{display:flex}.modal{background:var(--paper);width:min(100%,470px);border-radius:20px;padding:23px;max-height:90vh;overflow:auto}.modal h2{font:500 27px Georgia,serif;margin:0 0 6px}.modal>p{font-size:12px;color:var(--muted);margin:0 0 18px}.field{margin:13px 0}.field label{display:block;font-size:12px;font-weight:700;margin-bottom:6px}.field input,.field select{width:100%;padding:12px;border:1px solid var(--line);border-radius:10px;background:white;outline-color:var(--green2)}.modal-actions{display:flex;gap:9px;margin-top:18px}.modal-actions button{flex:1;padding:12px;border-radius:10px;font-weight:700}.cancel{border:1px solid var(--line);background:white}.confirm{border:0;background:var(--green);color:white}
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#1d3028;color:white;padding:12px 18px;border-radius:12px;font-size:13px;display:none;z-index:20;box-shadow:var(--shadow)}.toast.show{display:block}
+footer{max-width:1180px;margin:auto;padding:0 20px 30px;color:var(--muted);font-size:11px;display:flex;justify-content:space-between;gap:10px}
+@media(max-width:800px){.layout{grid-template-columns:1fr}.cart{position:static;order:-1}.cart-items{max-height:180px}.hero{align-items:start;flex-direction:column}.header-note{display:none}}
+@media(max-width:520px){main{padding:20px 14px 45px}header{padding:16px 14px}.products{grid-template-columns:1fr}.product{min-height:112px}.toolbar{align-items:stretch;flex-direction:column}.search{max-width:none}.open-pill{align-self:flex-start}footer{flex-direction:column}}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand"><div class="logo">☕</div><div><strong>La Cafetería</strong><small>Menú escolar · pide y recoge</small></div></div>
+  <div class="header-note">Tu receso, mejor aprovechado.<br>Haz tu pedido antes de llegar.</div>
+</header>
+<main>
+  <section class="hero">
+    <div><div class="eyebrow">Menú del día</div><h1>Algo rico para tu receso.</h1><p>Explora el menú, agrega tus favoritos al carrito y prepara tu pedido. Así podrás recogerlo sin pasar tanto tiempo en la fila.</p></div>
+    <div class="open-pill">● Pedidos disponibles</div>
+  </section>
+  <div class="toolbar">
+    <div class="search"><span>⌕</span><input id="search" type="search" placeholder="Buscar en el menú..." aria-label="Buscar productos"></div>
+    <div style="font-size:11px;color:var(--muted)">Precios en pesos mexicanos (MXN)</div>
+  </div>
+  <nav class="tabs" id="tabs"></nav>
+  <div class="layout">
+    <section><div class="section-head"><h2 id="categoryTitle">Todo el menú</h2><span id="resultCount"></span></div><div class="products" id="products"></div></section>
+    <aside class="cart">
+      <div class="cart-title"><h2>Tu pedido</h2><span class="count" id="count">0 artículos</span></div>
+      <div id="cartContents"><div class="empty"><div class="basket">🛍️</div>Tu carrito está vacío.<br>Agrega algo rico para empezar.</div></div>
+      <div class="total"><span>Total</span><strong id="total">$0</strong></div>
+      <button class="checkout" id="checkout" disabled>Continuar con mi pedido →</button>
+      <p class="cart-hint">Al confirmar, podrás enviarlo directamente por WhatsApp.</p>
+    </aside>
+  </div>
+</main>
+<footer><span>La Cafetería · Menú escolar</span><span>Los productos y existencias pueden variar.</span></footer>
+
+<div class="modal-backdrop" id="modal">
+  <div class="modal">
+    <h2>Confirma tu pedido</h2><p>Completa tus datos para identificar tu pedido al recogerlo.</p>
+    <div class="field"><label for="student">Nombre del alumno</label><input id="student" placeholder="Ej. Luis Pérez" autocomplete="name"></div>
+    <div class="field"><label for="group">Grupo / salón</label><input id="group" placeholder="Ej. 5° B"></div>
+    <div class="field"><label for="pickup">¿Cuándo lo recogerás?</label><select id="pickup"><option>En el próximo receso</option><option>Al terminar la clase</option><option>Lo antes posible</option></select></div>
+    <div class="field"><label for="notes">Indicaciones (opcional)</label><input id="notes" placeholder="Ej. Sin mayonesa"></div>
+    <div class="modal-actions"><button class="cancel" id="cancel">Volver</button><button class="confirm" id="confirm">Abrir WhatsApp y enviar</button></div>
+    <p style="margin:12px 0 0;font-size:10px">Se abrirá WhatsApp con tu pedido listo para enviar. Solo tendrás que elegir el chat de la cafetería y pulsar Enviar.</p>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+<script>
+const menu = [
+ {id:'lon-jamon',name:'Lonche de jamón',category:'Lonches',price:60,icon:'🥪',desc:'Pan suave con jamón. Ingredientes personalizables al recoger.'},
+ {id:'lon-panela',name:'Lonche de panela',category:'Lonches',price:60,icon:'🥪',desc:'Pan suave con queso panela.'},
+ {id:'lon-lomo',name:'Lonche de lomo',category:'Lonches',price:60,icon:'🥪',desc:'Pan suave con lomo.'},
+ {id:'lon-deshebrada',name:'Lonche de deshebrada',category:'Lonches',price:60,icon:'🥪',desc:'Pan suave con carne deshebrada.'},
+ {id:'sandwich',name:'Sándwich',category:'Comida',price:40,icon:'🍞',desc:'Consulta los ingredientes y personalización en cafetería.'},
+ {id:'taco',name:'Taco de barbacoa',category:'Comida',price:25,icon:'🌮',desc:'Precio por pieza.'},
+ {id:'pizza',name:'Pizza mini',category:'Comida',price:90,icon:'🍕',desc:'Pizza individual.'},
+ {id:'baguette',name:'Baguette',category:'Comida',price:70,icon:'🥖',desc:'Baguette preparada.'},
+ {id:'papas',name:'Papas fritas empaquetadas',category:'Extras y bebidas',price:20,icon:'🍟',desc:'Bolsa individual.'},
+ {id:'agua',name:'Agua fresca embotellada',category:'Extras y bebidas',price:20,icon:'🧃',desc:'Distintos sabores. Elige sabor al recoger.'},
+ {id:'cafe',name:'Café',category:'Extras y bebidas',price:20,icon:'☕',desc:'Café individual.'},
+ {id:'pan',name:'Pan',category:'Extras y bebidas',price:10,icon:'🥐',desc:'Pieza individual.'},
+ {id:'dulces',name:'Dulces y otros',category:'Dulces',price:null,icon:'🍬',desc:'Precio y variedad disponibles directamente en cafetería.'}
+];
+const categories=['Todo','Lonches','Comida','Extras y bebidas','Dulces'];
+let active='Todo', cart={};
+const money=n=>'$'+n.toFixed(2);
+const $=id=>document.getElementById(id);
+function renderTabs(){
+ $('tabs').innerHTML=categories.map(c=>`<button class="${active===c?'active':''}" data-cat="${c}">${c}</button>`).join('');
+ $('tabs').querySelectorAll('button').forEach(b=>b.onclick=()=>{active=b.dataset.cat;renderTabs();renderProducts()});
+}
+function renderProducts(){
+ const q=$('search').value.trim().toLowerCase();
+ const items=menu.filter(p=>(active==='Todo'||p.category===active)&&(`${p.name} ${p.desc}`).toLowerCase().includes(q));
+ $('categoryTitle').textContent=active==='Todo'?'Todo el menú':active;
+ $('resultCount').textContent=items.length+' productos';
+ $('products').innerHTML=items.length?items.map(p=>`<article class="product"><div class="food-icon">${p.icon}</div><div class="product-info"><h3>${p.name}</h3><p>${p.desc}</p><div class="product-bottom"><span class="price">${p.price===null?'Precio en cafetería':money(p.price)}</span><button class="add" data-add="${p.id}" aria-label="Agregar ${p.name}">+</button></div></div></article>`).join(''):'<p style="color:var(--muted);font-size:13px">No encontramos productos con esa búsqueda.</p>';
+ $('products').querySelectorAll('[data-add]').forEach(b=>b.onclick=()=>add(b.dataset.add));
+}
+function add(id){const p=menu.find(x=>x.id===id);if(p.price===null){toast('Este producto se consulta y paga directamente en cafetería.');return;}cart[id]=(cart[id]||0)+1;renderCart();}
+function change(id,delta){cart[id]=(cart[id]||0)+delta;if(cart[id]<=0)delete cart[id];renderCart();}
+function renderCart(){
+ const entries=Object.entries(cart);const qty=entries.reduce((s,[,n])=>s+n,0);const total=entries.reduce((s,[id,n])=>s+menu.find(p=>p.id===id).price*n,0);
+ $('count').textContent=qty+' '+(qty===1?'artículo':'artículos');$('total').textContent=money(total);$('checkout').disabled=!qty;
+ $('cartContents').innerHTML=qty?'<div class="cart-items">'+entries.map(([id,n])=>{const p=menu.find(x=>x.id===id);return `<div class="cart-item"><div class="item-top"><span>${p.name}</span><span>${money(p.price*n)}</span></div><div class="qty"><button data-change="${id}" data-d="-1">−</button><span>${n}</span><button data-change="${id}" data-d="1">+</button><span class="item-sub">${money(p.price)} c/u</span></div></div>`}).join('')+'</div>':'<div class="empty"><div class="basket">🛍️</div>Tu carrito está vacío.<br>Agrega algo rico para empezar.</div>';
+ $('cartContents').querySelectorAll('[data-change]').forEach(b=>b.onclick=()=>change(b.dataset.change,Number(b.dataset.d)));
+}
+function toast(msg){$('toast').textContent=msg;$('toast').classList.add('show');setTimeout(()=>$('toast').classList.remove('show'),2600)}
+$('search').addEventListener('input',renderProducts);
+$('checkout').onclick=()=>$('modal').classList.add('show');
+$('cancel').onclick=()=>$('modal').classList.remove('show');
+$('modal').onclick=e=>{if(e.target===$('modal'))$('modal').classList.remove('show')};
+$('confirm').onclick=()=>{
+ const student=$('student').value.trim(),group=$('group').value.trim();
+ if(!student||!group){toast('Escribe tu nombre y grupo para continuar.');return;}
+ const entries=Object.entries(cart),total=entries.reduce((s,[id,n])=>s+menu.find(p=>p.id===id).price*n,0);
+ const orderNumber='C'+String(Date.now()).slice(-6);
+ const lines=entries.map(([id,n])=>{const p=menu.find(x=>x.id===id);return `• ${n} x ${p.name} — ${money(p.price*n)}`;});
+ const message=`*PEDIDO NUEVO — LA CAFETERÍA*\n\n*Pedido:* ${orderNumber}\n*Alumno:* ${student}\n*Grupo:* ${group}\n*Recoger:* ${$('pickup').value}\n\n*Productos:*\n${lines.join('\n')}\n\n*TOTAL: ${money(total)}*${$('notes').value.trim()?'\n\n*Indicaciones:* '+$('notes').value.trim():''}\n\n_Pedido enviado desde el menú escolar._`;
+ const whatsappUrl='https://wa.me/?text='+encodeURIComponent(message);
+ window.open(whatsappUrl,'_blank','noopener,noreferrer');
+ $('modal').classList.remove('show');cart={};renderCart();$('student').value='';$('group').value='';$('notes').value='';
+ toast('WhatsApp se abrirá con tu pedido preparado.');
+};
+renderTabs();renderProducts();renderCart();
+</script>
+</body>
+</html>
