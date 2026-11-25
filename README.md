@@ -1,1 +1,0 @@
-# Cooperativa-en-orden
